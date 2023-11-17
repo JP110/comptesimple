@@ -43,7 +43,6 @@ class CompteSimple:
 class Banque: 
     def __init__(self):
         self.__comptes = []
-        self.__somme_soldes = 0
 
     def ouvrir_compte(self, client , depot):
          compte_ouvert = CompteSimple(client, depot)              
@@ -75,9 +74,9 @@ class Banque:
 
 class CompteCourant(CompteSimple):
     def __init__(self, titulaire: Personne, depot=0):
-       if depot != 0:
         super().__init__(titulaire, depot)
-        self.__operations = []
+        if depot != 0:
+            self.__operations = []
 
     def crediter(self, montant):                
          super().crediter(montant)
