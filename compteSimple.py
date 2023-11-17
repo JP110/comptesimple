@@ -75,8 +75,9 @@ class Banque:
 class CompteCourant(CompteSimple):
     def __init__(self, titulaire: Personne, depot=0):
         super().__init__(titulaire, depot)
+        self.__operations = []
         if depot != 0:
-            self.__operations = []
+            self.__operations.append(depot)
 
     def crediter(self, montant):                
          super().crediter(montant)
