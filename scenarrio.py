@@ -26,10 +26,10 @@ c1.crediter(15)
 c1.debiter(25)
 
 
-total = b1.total_argent()
+total = b1.somme_solde
 print(total)
 b1.prelever_frais(15)
-total2 = b1.total_argent()
+total2 = b1.somme_solde
 print(total2)
 b1.editer_releve_comptes()
 
@@ -37,5 +37,5 @@ b1.editer_releve_comptes()
 
 b2.prelever_frais(15)
 b2.editer_releve_comptes()
-total3 = b2.total_argent()
+total3 = b2.somme_solde
 print(total3)

@@ -44,14 +44,14 @@ def test_debiter(c1):
     c1.debiter(15)
     assert c1.solde == 10
 
-def test_calcul_total_argent(b1):
-    assert b1.total_argent() == 55
+def test_calcul_somme_solde(b1):
+    assert b1.somme_solde == 55
 
 
 def test_prelever_frais(b1):
 
     b1.prelever_frais(15)
-    assert b1.total_argent() == 25
+    assert b1.somme_solde == 25
 
 def test_credit_compte_courant(c2):
     c2.crediter(15)
@@ -70,13 +70,13 @@ def test_debiter_compte_courant(c2):
 #     assert out == "Credit de 15 euros\nDebit de -25 euros\n"
 
 
-def test_calcul_total_argent_different_type_de_compte(b2):
-    assert b2.total_argent() == 55
+def test_calcul_somme_solde_different_type_de_compte(b2):
+    assert b2.somme_solde == 55
 
 
 def test_prelever_frais_different_type_de_compte(b2):
     b2.prelever_frais(15)
-    assert b2.total_argent() == 25
+    assert b2.somme_solde == 25
 
 
 # def test_editer_releve_comptes(capfd, b2):

@@ -23,11 +23,17 @@ class CompteSimple:
     def solde(self):
         return self.__solde
 
-    def crediter(self, autre):                
-         self.__solde += autre
+    def crediter(self, montant):
+        if(montant >0):                
+            self.__solde += montant
+        else:
+            raise ValueError
 
-    def debiter(self, autre):    
-        self.__solde -= autre
+    def debiter(self, montant):    
+        if(montant >0):                
+            self.__solde -= montant
+        else:
+            raise ValueError
 
     def __str__(self) -> str:
         return f"le Solde de {self.titulaire} est de : {self.__solde}  euros"
@@ -37,6 +43,7 @@ class CompteSimple:
 class Banque: 
     def __init__(self):
         self.__comptes = []
+        self.__somme_soldes = 0
 
     def ouvrir_compte(self, client , depot):
          compte_ouvert = CompteSimple(client, depot)              
@@ -47,14 +54,11 @@ class Banque:
          compte_ouvert = CompteCourant(client, depot)              
          self.__comptes.append(compte_ouvert)
          return compte_ouvert
-    
-        
-    def total_argent(self):
-        somme = 0
-        for compte in self.__comptes:
-            somme += compte.solde
-        return somme
+    @property # accès en lecture à solde, comme si c’était un attribut
+    def somme_solde(self):
+        return sum(compte.solde for compte in self.__comptes)
 
+        
     def prelever_frais(self, montant_frais):
         for compte in self.__comptes:
             compte.debiter(montant_frais)
@@ -71,8 +75,9 @@ class Banque:
 
 class CompteCourant(CompteSimple):
     def __init__(self, titulaire: Personne, depot=0):
-       super().__init__(titulaire, depot)
-       self.__operations = []
+       if depot != 0:
+        super().__init__(titulaire, depot)
+        self.__operations = []
 
     def crediter(self, montant):                
          super().crediter(montant)
